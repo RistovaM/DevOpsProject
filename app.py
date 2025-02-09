@@ -6,25 +6,34 @@ import bcrypt
 import credentials
 from flask_pymongo import PyMongo
 
+# app = Flask(__name__)
+#
+# # MongoDB URI configuration
+# #app.config["MONGO_URI"] = "mongodb://mongo:27017/Cluster0"  # 'mongo' is the container name
+# #mongo = PyMongo(app)
+# # Create a new client and connect to the server
+# client = MongoClient("mongodb://localhost:27017", server_api=ServerApi('1'))
+# # add your mongodb uri to your credentials.py file!
+# # uri = "your_mongo_db_uri"
+#
+# db = client.Cluster0
+# product = db.product
+# user_log = db.login
+# # Send a ping to confirm a successful connection
 app = Flask(__name__)
 
-# MongoDB URI configuration
-app.config["MONGO_URI"] = "mongodb://mongo:27017/mydb"  # 'mongo' is the container name
+# Use the Flask-PyMongo approach
+app.config["MONGO_URI"] = "mongodb://mongo:27017/Cluster0"  # Use 'mongo' for Docker
 mongo = PyMongo(app)
-# Create a new client and connect to the server
-client = MongoClient("mongodb://localhost:27017", server_api=ServerApi('1'))
-# add your mongodb uri to your credentials.py file!
-# uri = "your_mongo_db_uri"
 
-db = client.Cluster0
+db = mongo.db
 product = db.product
 user_log = db.login
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+# try:
+#     client.admin.command('ping')
+#     print("Pinged your deployment. You successfully connected to MongoDB!")
+# except Exception as e:
+#     print(e)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'testing'
