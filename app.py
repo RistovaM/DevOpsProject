@@ -4,7 +4,13 @@ from pymongo.server_api import ServerApi
 from bson.objectid import ObjectId
 import bcrypt
 import credentials
+from flask_pymongo import PyMongo
 
+app = Flask(__name__)
+
+# MongoDB URI configuration
+app.config["MONGO_URI"] = "mongodb://mongo:27017/mydb"  # 'mongo' is the container name
+mongo = PyMongo(app)
 # Create a new client and connect to the server
 client = MongoClient("mongodb://localhost:27017", server_api=ServerApi('1'))
 # add your mongodb uri to your credentials.py file!
