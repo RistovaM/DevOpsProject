@@ -4,7 +4,7 @@ metadata:
   name: flask-app
   namespace: flask-mongo
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: flask-app
@@ -18,7 +18,10 @@ spec:
           image: ristovam/devopsproject:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 5006
+            - containerPort: 5000
           env:
             - name: MONGO_URI
-              value: "mongodb://mongo-service:27017"
+              valueFrom:
+                configMapKeyRef:
+                  name: flask-config
+                  key: MONGO_URI
