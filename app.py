@@ -5,6 +5,9 @@ from bson.objectid import ObjectId
 import bcrypt
 import credentials
 
+app = Flask(__name__)
+
+
 # Create a new client and connect to the server
 client = MongoClient("mongodb://mongo-service:27017")
 # add your mongodb uri to your credentials.py file!
@@ -14,14 +17,14 @@ db = client.Cluster0
 product = db.product
 user_log = db.login
 # Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+# try:
+#     client.admin.command('ping')
+#     print("Pinged your deployment. You successfully connected to MongoDB!")
+# except Exception as e:
+#     print(e)
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = 'testing'
+# # app = Flask(__name__)
+# app.config['SECRET_KEY'] = 'testing'
 
 @app.route('/', methods=("GET", "POST"))
 def index():
