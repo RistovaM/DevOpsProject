@@ -18,10 +18,7 @@ spec:
           image: ristovam/devopsproject:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 5000
+            - containerPort: 5006
           env:
             - name: MONGO_URI
-              valueFrom:
-                configMapKeyRef:
-                  name: flask-config
-                  key: MONGO_URI
+              value: "mongodb://mongo-service:27017"
