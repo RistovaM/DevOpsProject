@@ -1,25 +1,48 @@
-version: '3'
-services:
-  mongo:
-    image: mongo
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    networks:
-      - app-network
+# version: '3'
+# services:
+#   mongo:
+#     image: mongo
+#     container_name: mongo
+#     ports:
+#       - "27017:27017"
+#     networks:
+#       - app-network
 
-  flask:
+#   flask:
+#     build: .
+#     container_name: flask-app
+#     ports:
+#       - "5006:5006"
+#     depends_on:
+#       - mongo
+#     environment:
+#       - MONGO_URI=mongodb://mongo:27017/Cluster0
+#     networks:
+#       - app-network
+
+# networks:
+#   app-network:
+#     driver: bridge
+
+version: '3.8'
+
+services:
+  flask_app:
     build: .
-    container_name: flask-app
     ports:
       - "5006:5006"
     depends_on:
       - mongo
     environment:
-      - MONGO_URI=mongodb://mongo:27017/Cluster0
-    networks:
-      - app-network
+      MONGO_URI: "mongodb://127.0.0.1:27017"
 
-networks:
-  app-network:
-    driver: bridge
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
