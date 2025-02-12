@@ -14,4 +14,4 @@ spec:
           service:
             name: flask-app-service
             port:
-              number: 5006
+              number: 5000
