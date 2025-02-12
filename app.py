@@ -6,7 +6,7 @@ import bcrypt
 import credentials
 
 # Create a new client and connect to the server
-client = MongoClient("mongodb://127.0.0.1:27017")
+client = MongoClient("mongodb://mongo-service:27017")
 # add your mongodb uri to your credentials.py file!
 # uri = "your_mongo_db_uri"
 
