@@ -4,4 +4,4 @@ metadata:
   name: flask-config
   namespace: flask-mongo
 data:
-  MONGO_URI: "mongodb://mongo:27017/Cluster0"
+  MONGO_URI: "mongodb://mongo-service:27017/Cluster0"
